@@ -1,10 +1,29 @@
 <div class="page-width">
+
+    <!-- Imprime dinámicamente las colecciones -->
+    {% for collection in collections %}
+        {% if page.title == "Choose your Crack" %}
+            <h2>Hola Mundo</h2>
+        
+        {% else %}
+        
+        <h2><a href={{collection.url}}>
+            {{collection.title}}
+            </a>
+        </h2>
+            {% endif %}
+    {% endfor %}
+
+<!-- --------------------------------------------------------- -->
+    <!-- Coloca título a grilla -->
     {% if section.settings.title != blank %}
       <div class="section-header text-center">
         <h2>{{ section.settings.title | escape }}</h2>
       </div>
     {% endif %}
+    
   
+    <!-- Asigna a var "colección" el objeto colecciones. Luego lo asocia al id en el schema-->
     {%- assign collection = collections[section.settings.collection] -%}
   
     {% case section.settings.grid %}
@@ -22,12 +41,15 @@
         {%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
     {% endcase %}
   
+    <!-- Asigna una variable product limit para establecer límites a las filas -->
     {%- assign product_limit = section.settings.grid | times: section.settings.rows -%}
   
     <ul class="grid grid--uniform grid--view-items">
+        <!-- HAce un for para los productos en la colección de productos -->
       {% for product in collection.products limit: product_limit %}
         <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-          {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+            <!-- No sé qué es la línea 52. Parece que imprime los layouts de las grullas -->
+            {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
         </li>
       {% else %}
   
@@ -59,8 +81,7 @@
     {% endif %}
   {%- comment -%}{%- endcomment -%}
   </div>
-  
-  
+
   
   {% schema %}
   {
