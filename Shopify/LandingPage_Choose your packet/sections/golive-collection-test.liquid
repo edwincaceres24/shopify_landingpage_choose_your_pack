@@ -25,36 +25,125 @@
 
   <!-- Al asignar la variable colección con el objeto en el schema me imprime la colección -->
   {%- assign collection = collections[section.settings.collection] -%}
-
+  
+  {%- comment -%}  Imprime la descripción
   
   {%- if collection.description != blank -%}
-    <p>{{ collection.description }}</p>
+  <p>{{ collection.description }}</p>
   {%- endif -%}
+  {%- endcomment -%} 
+  
   
   <ul>
     {%- for product in collection.products -%}
-      <li>
-        <a class="product-card" href="{{ product.url | within: collection }}">
-          <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
-          {{ product.title }}
-          <p>
-            <span aria-hidden="true">—</span>
-            {%- if product.price_varies -%}
-              <span class="visuallyhidden">Starting at</span>
-              {{ product.price_min | money_without_trailing_zeros }}
-              <span aria-hidden="true">+</span>
-            {%- else -%}
-              {{ product.price | money_without_trailing_zeros }}
-            {%- endif -%}
-          </p>
-          <p>
-            <span class="visuallyhidden">by</span>
-            {{ product.vendor }}
-          </p>
-        </a>
-      </li>
+    <li>
+      <a class="product-card" href="{{ product.url | within: collection }}">
+        <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
+        {{ product.title }}
+        <p>
+          <span aria-hidden="true">—</span>
+          {%- if product.price_varies -%}
+          <span class="visuallyhidden">Starting at</span>
+          {{ product.price_min | money_without_trailing_zeros }}
+          <span aria-hidden="true">+</span>
+          {%- else -%}
+          {{ product.price | money_without_trailing_zeros }}
+          {%- endif -%}
+        </p>
+        <p>
+          <span class="visuallyhidden">by</span>
+          {{ product.vendor }}
+        </p>
+      </a>
+    </li>
     {%- endfor -%}
   </ul>
+  
+  {%- assign collection_2 = collections[section.settings.collection_2] -%}
+  
+  <h2>Buenos días su señoría  <a href="{{ collection_2.url }}">{{ collection_2.title }}</a> </h2>
+  <ul>
+    {%- for product in collection_2.products -%}
+    <li>
+      <a class="product-card" href="{{ product.url | within: collection }}">
+        <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
+        {{ product.title }}
+        <p>
+          <span aria-hidden="true">—</span>
+          {%- if product.price_varies -%}
+          <span class="visuallyhidden">Starting at</span>
+          {{ product.price_min | money_without_trailing_zeros }}
+          <span aria-hidden="true">+</span>
+          {%- else -%}
+          {{ product.price | money_without_trailing_zeros }}
+          {%- endif -%}
+        </p>
+        <p>
+          <span class="visuallyhidden">by</span>
+          {{ product.vendor }}
+        </p>
+      </a>
+    </li>
+    {%- endfor -%}
+  </ul>
+
+
+  {%- assign collection_3 = collections[section.settings.collection_3] -%}
+  
+  <h2>Buenos días su señoría  <a href="{{ collection_3.url }}">{{ collection_3.title }}</a> </h2>
+  <ul>
+    {%- for product in collection_3.products -%}
+    <li>
+      <a class="product-card" href="{{ product.url | within: collection }}">
+        <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
+        {{ product.title }}
+        <p>
+          <span aria-hidden="true">—</span>
+          {%- if product.price_varies -%}
+          <span class="visuallyhidden">Starting at</span>
+          {{ product.price_min | money_without_trailing_zeros }}
+          <span aria-hidden="true">+</span>
+          {%- else -%}
+          {{ product.price | money_without_trailing_zeros }}
+          {%- endif -%}
+        </p>
+        <p>
+          <span class="visuallyhidden">by</span>
+          {{ product.vendor }}
+        </p>
+      </a>
+    </li>
+    {%- endfor -%}
+  </ul>
+  
+  {%- assign collection_4 = collections[section.settings.collection_4] -%}
+  
+  <h2>Buenos días su señoría  <a href="{{ collection_4.url }}">{{ collection_4.title }}</a> </h2>
+  <ul>
+    {%- for product in collection_4.products -%}
+    <li>
+      <a class="product-card" href="{{ product.url | within: collection }}">
+        <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
+        {{ product.title }}
+        <p>
+          <span aria-hidden="true">—</span>
+          {%- if product.price_varies -%}
+          <span class="visuallyhidden">Starting at</span>
+          {{ product.price_min | money_without_trailing_zeros }}
+          <span aria-hidden="true">+</span>
+          {%- else -%}
+          {{ product.price | money_without_trailing_zeros }}
+          {%- endif -%}
+        </p>
+        <p>
+          <span class="visuallyhidden">by</span>
+          {{ product.vendor }}
+        </p>
+      </a>
+    </li>
+    {%- endfor -%}
+  </ul>
+
 {% schema %}
 {
     "name": {
@@ -65,10 +154,34 @@
         "id": "collection",
         "type": "collection",
         "label": {
-            "en": "Collection",
-            "es": "Colección"       
+            "en": "Collection 1",
+            "es": "Colección 1"       
                 }
-        }
+        },
+        {
+          "id": "collection_2",
+          "type": "collection",
+          "label": {
+              "en": "Collection 2",
+              "es": "Colección 2"       
+                  }
+          },
+        {
+          "id": "collection_3",
+          "type": "collection",
+          "label": {
+              "en": "Collection 3",
+              "es": "Colección 3"       
+                  }
+          },
+        {
+          "id": "collection_4",
+          "type": "collection",
+          "label": {
+              "en": "Collection 4",
+              "es": "Colección 4"       
+                  }
+          }
  ]   
 }
 {% endschema %}
