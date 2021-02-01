@@ -1,0 +1,131 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu';
+}
+
+body{
+    background-color: rgb(255, 166, 0);
+}
+.main-title {
+    margin: 0 auto;
+    padding: 4rem 0;
+    text-align: center;
+    font-size: 4em;
+    font-weight: bold;
+    color: white;
+}
+section{
+    display: flex;
+    justify-content:center;
+
+}
+
+.golive-container {
+    
+    background-color: white;
+    border-radius: 15px;
+    padding: 1.25rem 1rem;
+    margin:0 1rem;
+}
+
+@media screen and (min-width: 1301px){
+    section div #first{
+        width: 45rem;
+        align-items:flex-end;
+    }
+    #second{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+}
+.golive-container  img {
+    width: 15rem;
+    display: block;
+    margin: 0 auto;
+
+
+}
+.img-title-container{
+    margin:0 auto;
+}
+.img-title {
+    top: -50px;
+    margin: 0 30%;
+    text-align: center;
+    position: relative; 
+    background-color: rgb(234, 170, 51);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius:25px; 
+
+}
+
+.items{
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+    margin-bottom: auto;
+    margin-top: auto;
+
+}
+.items p{
+    font-weight: bold;
+    /* padding-right: 2.5rem; */
+    width: 7rem;
+}
+
+.items div{
+    background-color: black;
+    height: 1rem;
+    width: 300px;
+    border: 1px solid red;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 1300px) {
+    .golive-container{
+        margin: 2rem 8rem;
+    }
+    section{
+        display: block;
+    }
+}
+@media screen and (max-width: 650px)  {
+    .golive-container{
+        margin: 1rem 5rem;
+    }
+    .main-title {
+        font-size: 2.25em;
+    }
+    .img-title {
+        top: -35px;
+        margin: 0 25%;
+        font-size: 13px;
+        padding: 0.5rem 1rem;
+    }
+    .golive-img-container img {
+        width: 13rem;
+        padding: 2rem 0;
+            w
+    }
+    .items{
+        padding: 0.25rem 0;
+    }
+    .items p{
+        width: 5rem;
+        text-align: center;
+    }
+    .items div{
+        width:12rem;
+    }
+    section{
+        display: block;
+    }
+}
+}

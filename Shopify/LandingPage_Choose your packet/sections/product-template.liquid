@@ -215,6 +215,8 @@
                 {%- if section.settings.enable_payment_button %} product-form__item--payment-button {%- endif -%}
                 {%- if product.has_only_default_variant %} product-form__item--no-variants {%- endif -%}"
               >
+
+              <!-- Este es el código a replicar -->
                 <button type="submit" name="add"
                   {% unless current_variant.available %} aria-disabled="true"{% endunless %}
                   aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
@@ -225,7 +227,7 @@
                     {% unless current_variant.available %}
                       {{ 'products.product.sold_out' | t }}
                     {% else %}
-                      {{ 'products.product.add_to_cart' | t }}
+                      {{ 'products.product.add_to_cart' | t }} Hola mundo
                     {% endunless %}
                   </span>
                   <span class="hide" data-loader>

@@ -1,7 +1,14 @@
 <style>
+    .main-container{
+      display: flex;
+    }
+
+    .container_block{
+      margin: 0 2.5rem;
+    }
     .product-card {
       box-sizing: border-box;
-      float: left;
+      float:left;
       min-height: 1em;
       padding-left: 2em;
       vertical-align: top;
@@ -19,6 +26,16 @@
       width: 1px;
       white-space: nowrap;
     }
+    .cart_container{
+      border-color: rgb(148, 148, 189);
+      border-style: solid;
+      border-width: 5px;
+      float:right;
+      /* position: fixed; */
+      max-height: 50vh;
+      min-width: 20vw;
+    
+    }
   </style>
   
   <h2> Buenos días</h2>
@@ -33,34 +50,53 @@
   {%- endif -%}
   {%- endcomment -%} 
   
-  
-  <ul>
-    {%- for product in collection.products -%}
-    <li>
-      <a class="product-card" href="{{ product.url | within: collection }}">
-        <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
-        {{ product.title }}
-        <p>
-          <span aria-hidden="true">—</span>
-          {%- if product.price_varies -%}
-          <span class="visuallyhidden">Starting at</span>
-          {{ product.price_min | money_without_trailing_zeros }}
-          <span aria-hidden="true">+</span>
-          {%- else -%}
-          {{ product.price | money_without_trailing_zeros }}
-          {%- endif -%}
-        </p>
-        <p>
-          <span class="visuallyhidden">by</span>
-          {{ product.vendor }}
-        </p>
-      </a>
+  <div class="main-container">
+
+    <!-- Colecciones -->
+    <section class="container_block">
+      <ul>
+        {%- for product in collection.products -%}
+        <li >
+          <div>
+            
+        <a class="product-card" href="{{ product.url | within: collection }}">
+          <img src="{{ product.featured_image.src | img_url: '1024x' }}" alt="">
+          {{ product.title }}
+          <p>
+            <span aria-hidden="true">—</span>
+            {%- if product.price_varies -%}
+            <span class="visuallyhidden">Starting at</span>
+            {{ product.price_min | money_without_trailing_zeros }}
+            <span aria-hidden="true">+</span>
+            {%- else -%}
+            {{ product.price | money_without_trailing_zeros }}
+            {%- endif -%}
+          </p>
+          <p>
+            <span class="visuallyhidden">by</span>
+            {{ product.vendor }}
+          </p>
+        </a>
+        <form method="post" action="/cart/add" style="position: inherit">
+          <!--Agrega el id de la variante  -->
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+          <!-- Este es el contador -->
+          <!-- <input min="1" type="number" id="quantity" name="quantity" value="1"/> -->
+          <!-- Este es el texto para agregar el carrito -->
+          <input type="submit" value="{{'products.product.add_to_cart' | t}}" class="btn" />
+          {% if settings.enable_ajax %}
+          {% include "cart-popup" %}
+          {% endif %}
+
+        </form>
+      </div>
+        
+        <!-- Agrega el método y la action -->
     </li>
     {%- endfor -%}
   </ul>
   
   {%- assign collection_2 = collections[section.settings.collection_2] -%}
-  
   <h2>Buenos días su señoría  <a href="{{ collection_2.url }}">{{ collection_2.title }}</a> </h2>
   <ul>
     {%- for product in collection_2.products -%}
@@ -89,7 +125,6 @@
 
 
   {%- assign collection_3 = collections[section.settings.collection_3] -%}
-  
   <h2>Buenos días su señoría  <a href="{{ collection_3.url }}">{{ collection_3.title }}</a> </h2>
   <ul>
     {%- for product in collection_3.products -%}
@@ -115,9 +150,9 @@
     </li>
     {%- endfor -%}
   </ul>
+
   
   {%- assign collection_4 = collections[section.settings.collection_4] -%}
-  
   <h2>Buenos días su señoría  <a href="{{ collection_4.url }}">{{ collection_4.title }}</a> </h2>
   <ul>
     {%- for product in collection_4.products -%}
@@ -143,6 +178,31 @@
     </li>
     {%- endfor -%}
   </ul>
+</section>
+
+<!-- Cart Container -->
+  <aside class="cart_container container_block">
+    <h2>Choose your pack</h2>
+    <div>
+      <p>Choose your first product</p>
+    </div>
+    <div>
+      <p>Choose your second product</p>
+    </div>
+    <div>
+      <p>Choose your third product</p>
+    </div>
+    <div>
+      <p>Choose your fourth product</p>
+    </div>
+    <div class="cart__submit-controls">
+      <input type="submit" name="checkout"
+        class="cart__submit btn btn--small-wide" style="width: inherit;"
+        value="{{ 'cart.general.checkout' | t }}">
+    </aside>
+  </div>
+</div>
+
 
 {% schema %}
 {
